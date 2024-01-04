@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("com.adarshr.test-logger") version "4.0.0"
 }
 
 group = "org.example"
@@ -10,12 +11,35 @@ repositories {
 }
 
 dependencies {
-    implementation("org.testng:testng:7.1.0")
     implementation("org.junit.jupiter:junit-jupiter:5.8.1")
     implementation("org.assertj:assertj-core:3.22.0")
-    testImplementation("org.testng:testng:7.1.0")
 }
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+}
+
+tasks.withType<Javadoc>{
+    options.encoding = "UTF-8"
+}
+
+allprojects {
+    apply{
+        plugin("com.adarshr.test-logger")
+    }
+}
+
+tasks{
+    test{
+        testLogging.showExceptions = true
+        useJUnitPlatform()
+    }
+}
+
+testlogger{
+    setTheme("mocha")
 }
