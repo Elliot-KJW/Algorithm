@@ -13,4 +13,11 @@ public class SearchTest {
         assertThat(Search.sequentialSearch(new int[]{10, 7, 11, 5, 13, 8}, 7)).isEqualTo(1);
         System.out.println("테스트 완료");
     }
+
+    @DisplayName("이분검색 테스트")
+    @Test
+    void testBinarySearch() {
+        assertThat(Search.binarySearch(new int[]{10, 7, 11, 5, 13, 8}, 7)).isEqualTo(1);
+        System.out.println("테스트 완료");
+    }
 }
